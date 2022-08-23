@@ -1,0 +1,15 @@
+@import '../../../mixins/button_style.scss';
+
+button.button {
+    @include button_style();
+    
+    transition: background-color .25s ease;
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        background-color: transparent;
+        color: #fff;
+        box-shadow: 3px 3px 30px rgba(191, 175, 242, 0.25);
+    }
+}

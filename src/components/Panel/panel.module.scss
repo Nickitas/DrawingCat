@@ -1,0 +1,115 @@
+.panel {
+    margin: 0 auto;
+    padding: 15px 0;
+
+    .row {
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1920px;
+    }
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        @media (max-width:513px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+}
+
+
+.logo {
+    margin-right: 40px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.8;
+    color: #fff;
+    will-change: opacity;
+    user-select: none;
+    transition: opacity .25s ease;
+    cursor: pointer;
+    &:hover {
+        opacity: .6;
+    }
+}
+
+.colorpiсker {
+    position: relative;
+    user-select: none;
+
+    .color_button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        min-width: 30px;
+        min-height: 30px;
+        border-radius: 50%;
+        border: 3px solid #fff;
+        overflow: hidden;
+    
+        .choice {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        transition: opacity .25 ease;
+        cursor: pointer;
+        &:hover {
+            opacity: .6;
+        }
+    }
+    .picker {
+        position: absolute;
+        z-index: 99999;
+    }
+    .range {
+        .track {
+            height: 6px;
+            width: 100%;
+            border: 1px solid #999;
+            border-radius: 20px;
+        }
+        .thumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: #999;
+            font-size: 11px;
+        }
+    }
+}
+
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 200px;
+    width: 100%;
+
+    .task_link {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+
+        svg {
+            margin-right: 6px;
+        }
+        @media (max-width:570px) {
+            span {
+                display: none;
+            }
+        }
+    }
+}

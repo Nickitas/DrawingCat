@@ -1,0 +1,24 @@
+
+@mixin button_style(
+    $position: static,
+    $color: #BFAFF2,
+    $p_tb: .6em,
+    $p_lr: 1.2em,
+    ) {
+    position: $position;
+    padding: $p_tb $p_lr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color;
+    border: 1px solid $color;
+    border-radius: 8px;
+
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    color: #333333;
+    user-select: none;
+    outline: none;
+    cursor: pointer;
+}
