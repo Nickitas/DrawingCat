@@ -1,3 +1,4 @@
+@import './responsive_font.scss';
 
 @mixin button_style(
     $position: static,
@@ -14,7 +15,7 @@
     border: 1px solid $color;
     border-radius: 8px;
 
-    font-size: 1em;
+    @include responsive_font(16, 10);
     font-weight: 500;
     font-family: inherit;
     color: #333333;

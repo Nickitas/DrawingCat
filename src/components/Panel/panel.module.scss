@@ -1,3 +1,5 @@
+@import '../../mixins/responsive_font.scss';
+
 .panel {
     margin: 0 auto;
     padding: 15px 0;
@@ -15,8 +17,7 @@
         display: flex;
         align-items: center;
         @media (max-width:513px) {
-            flex-direction: column;
-            align-items: flex-start;
+            flex-direction: row-reverse;
         }
     }
 }
@@ -26,7 +27,7 @@
     margin-right: 40px;
     font-style: normal;
     font-weight: 600;
-    font-size: 24px;
+    @include responsive-font(24, 14);
     line-height: 1.8;
     color: #fff;
     will-change: opacity;
@@ -35,6 +36,10 @@
     cursor: pointer;
     &:hover {
         opacity: .6;
+    }
+    @media (max-width:513px) {
+        margin-right: 0;
+        margin-left: 15px;
     }
 }
 
@@ -46,17 +51,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 35px;
-        height: 35px;
-        min-width: 30px;
-        min-height: 30px;
+        width: 30px;
+        height: 30px;
+        min-width: 20px;
+        min-height: 20px;
         border-radius: 50%;
         border: 3px solid #fff;
         overflow: hidden;
     
         .choice {
-            width: 100%;
-            height: 100%;
+            width: 98%;
+            height: 98%;
             border-radius: 50%;
         }
 
@@ -68,7 +73,11 @@
     }
     .picker {
         position: absolute;
-        z-index: 99999;
+        z-index: 999;
+        left: -6px;
+        & div {
+            max-width: 276px;
+        }
     }
     .range {
         .track {
@@ -110,6 +119,9 @@
             span {
                 display: none;
             }
+        }
+        @media (max-width:370px) {
+            margin-right: 0;
         }
     }
 }

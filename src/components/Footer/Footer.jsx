@@ -45,6 +45,7 @@ const Footer = ({ setShowHelper }) => {
             </div>
             { showAlert && (
                 <Alert 
+                    showAlert={showAlert}
                     setShowAlert={setShowAlert}
                     type={success?'info':'error'}
                     message={`Telegram: ${nick} ${success?'скопирован':'не скопирован'}!`}

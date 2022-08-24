@@ -41,7 +41,6 @@ const Panel = ({
     }
 
 
-
     return (
         <div className={classes.panel}>
             <div className={baseClass.container}>
@@ -63,6 +62,7 @@ const Panel = ({
                                     <TwitterPicker
                                         color={color}
                                         onChangeComplete={handleOnChangeColor}
+                                        width={'65vw'}
                                     />
                                     <div className={classes.range} >
                                         <Range step={1} min={1} max={20}
@@ -108,6 +108,7 @@ const Panel = ({
             </div>
             { showAlert && (
                 <Alert 
+                    showAlert={showAlert}
                     setShowAlert={setShowAlert}
                     type='task'
                     message={`Нарисуй "${word}"`}

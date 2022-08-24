@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { InfoIcon, LightningIcon, ErrorIcon, CloseIcon } from '../../../svg.module'
 import classes from './alert.module.scss'
 
-const Alert = ({ setShowAlert, type, message }) => {
+const Alert = ({ showAlert, setShowAlert, type, message }) => {
 
     useEffect(() => {
         setTimeout(() => {
@@ -15,7 +15,7 @@ const Alert = ({ setShowAlert, type, message }) => {
     }
 
     return (
-        <div className={classes.alert}>
+        <div className={`${classes.alert} ${showAlert?classes.animation:''}`}>
             <div className={classes.icon}>
                 { type=='info'?<InfoIcon/>:type=='task'?<LightningIcon/>:<ErrorIcon/>}
             </div>

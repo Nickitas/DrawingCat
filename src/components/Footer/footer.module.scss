@@ -1,6 +1,8 @@
+@import '../../mixins/responsive_font.scss';
+
 .footer {
     position: relative;
-    margin: 100px auto 0;
+    margin: 60px auto 0;
     padding: 40px 0;
 
     .row {
@@ -18,7 +20,7 @@
     &::before {
         content: '';
         position: absolute;
-        top: 0;
+        top: 2%;
         left: 50%;
         transform: translateX(-50%);
         width: 80%;
@@ -30,7 +32,7 @@
 
 .logo {
     font-weight: 600;
-    font-size: 24px;
+    @include responsive-font(24, 18);
     line-height: 1;
     opacity: .4;
     user-select: none;
@@ -44,7 +46,7 @@
 .copywrite {
     margin-top: 10px;
     font-weight: 200;
-    font-size: 18px;
+    @include responsive-font(18, 10);
     line-height: 1.78;
 }
 
@@ -53,5 +55,17 @@ a.info {
     align-items: center;
     svg {
         margin-right: 6px;
+    }
+}
+
+@media (max-width:440px) {
+    .footer .row {
+        flex-direction: column;
+    }
+    a.info {
+        justify-content: center;
+    }
+    .footer button {
+        margin-top: 20px;
     }
 }

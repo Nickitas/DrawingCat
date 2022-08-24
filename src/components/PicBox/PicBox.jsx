@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import Alert from '../UI/alert/Alert'
+import { answersData } from './answersData'
 import { OkeyIcon, CrossIcon, ImageIcon } from '../../svg.module'
 import baseClass from '../../index.module.scss'
 import classes from './pic_box.module.scss'
@@ -10,55 +12,73 @@ const PicBox = ({ color, lineWidth }) => {
 
     const [isDrawing, setIsDrawing] = useState(false)
     const [showAlert, setShowAlert] = useState(false)
+    const [timeStart, setTimeStart] = useState(0)
+    const [timeEnd, setTimeEnd] = useState(timeStart)
+    const [points, setPoints] = useState(0)
+    const [yes, setYes] = useState(false)
+
 
     useEffect(() => {
-      const canvas = canvasRef.current
-      canvas.width = window.innerWidth * 2
-      canvas.height = window.innerHeight * 2
-      canvas.style.width = `${window.innerWidth}px`
-      canvas.style.height = `${window.innerHeight}px`
+        const canvas = canvasRef.current
+        canvas.width = window.innerWidth * 2
+        canvas.height = window.innerHeight * 2
+        canvas.style.width = `${window.innerWidth}px`
+        canvas.style.height = `${window.innerHeight}px`
   
-      const context = canvas.getContext('2d')
-      context.scale(2,2)
-      context.lineCap = 'round'
-      context.strokeStyle = color
-      context.lineWidth = lineWidth
-      contextRef.current = context
+        const context = canvas.getContext('2d')
+        context.scale(2,2)
+        context.lineCap = 'round'
+        context.strokeStyle = color
+        context.lineWidth = lineWidth
+        contextRef.current = context
     }, [])
 
   
     const startDrawing = ({ nativeEvent }) => {
-      const {offsetX, offsetY} = nativeEvent
-      contextRef.current.beginPath()
-      contextRef.current.moveTo(offsetX, offsetY)
-      setIsDrawing(true)
+        setTimeStart(new Date().getSeconds())
+        const {offsetX, offsetY} = nativeEvent
+        contextRef.current.beginPath()
+        contextRef.current.moveTo(offsetX, offsetY)
+        setIsDrawing(true)
     }
     const finishDrawing = () => {
-      contextRef.current.closePath()
-      setIsDrawing(false)
+        setTimeEnd(new Date().getSeconds())
+        contextRef.current.closePath()
+        setIsDrawing(false)
     }
     const draw = ({ nativeEvent }) => {
-      if(!isDrawing) {
-        return
-      }
-      const {offsetX, offsetY}  = nativeEvent
-      contextRef.current.strokeStyle = color
-      contextRef.current.lineWidth = lineWidth
-      contextRef.current.lineTo(offsetX, offsetY)
-      contextRef.current.stroke()
+        if(!isDrawing) {
+            return
+        }
+        const {offsetX, offsetY}  = nativeEvent
+        contextRef.current.strokeStyle = color
+        contextRef.current.lineWidth = lineWidth
+        contextRef.current.lineTo(offsetX, offsetY)
+        contextRef.current.stroke()
     }
 
     const handleCheck = () => {
-        if(contextRef === null) {
-            setShowAlert(true)
-        }
-        else {
-            // набранные очки - сохранять в lockaleStoreg
-            // массив вариантов оценки от худщего до лучшего. Индекс будет обозначать кол-очков на вычет и добавление по четным и нечетным
-        }
+        // if((timeEnd - timeStart) > 1) {
+        //     const randomIndex = Math.floor(Math.random() * answersData.length)
+        //     if(randomIndex % 2) {
+        //         setYes(true)
+        //     }
+        //     setPoints(points + randomIndex)
+        //     localStorage.setItem('points', points)
+
+        
+
+        //     console.log(randomIndex)
+        // }
+        // else {
+        //     setShowAlert(true)
+        // }
     }
     const handleCleanОff = () => {
-        contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+        setTimeout(() => {
+            contextRef.current.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
+        },100)
+        
     }
     const handleSavePic = async () => {
         if(contextRef === null) {
@@ -100,6 +120,7 @@ const PicBox = ({ color, lineWidth }) => {
             </div>
             { showAlert && (
                 <Alert 
+                    showAlert={showAlert}
                     setShowAlert={setShowAlert}
                     type='error'
                     message='Ничего не было нарисовано!!!'

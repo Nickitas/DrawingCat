@@ -1,23 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+@import './mixins/responsive_font.scss';
 
 $font: 'Poppins', sans-serif;
-
-
 
 :root {
   font-family: $font;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
@@ -31,12 +20,20 @@ $font: 'Poppins', sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
+  min-width: 320px;
 }
 
 #root {
@@ -56,10 +53,11 @@ main.App {
 
 a {
   font-weight: 400;
-  font-size: 18px;
+  @include responsive-font(18, 12);
   line-height: 1.78;
-  text-align: right;
+  text-align: left;
   color: #fff;
+  white-space: nowrap;
   text-decoration: none;
   user-select: none;
   transition: all .25s ease;
@@ -67,19 +65,4 @@ a {
   &:hover {
     color: #F8D57E;
   }
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
 }

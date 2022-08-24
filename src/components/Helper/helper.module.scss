@@ -1,5 +1,8 @@
+@import '../../mixins/responsive_font.scss';
+
 .helper {
     position: fixed;
+    z-index: 99999;
     top: 0;
     right: 0;
     bottom: 0;
@@ -8,40 +11,42 @@
     width: 100vw;
     height: 100vh;
 
+    background-color: #f8d67e2a;
     backdrop-filter: blur(2px);
 }
 
 .cat {
     position: absolute;
+    margin-left: -10px;
+    bottom: -3.385vw;
+    left: -0.8vw;
     background: no-repeat url(../../../public/cat.png) center;
     background-size: contain;
-    width: 150px;
-    height: 1140px;
+    width: 7.813vw;
+    min-width: 100px;
+    height: 20.833vw;
+    min-height: 250px;
+    animation: sale 4s infinite 4s both;
 }
 
 .comment {
     position: absolute;
-    width: 500px;
-	flex-basis: 50%;
-	margin-left: 50px;
-	margin-bottom: 25px;
-	padding-left: 53px;
+    margin-left: 70px;
+    width: 80vw;
+    bottom: 2.604vw;
 
     .bubble {
         padding: 15px;
-        // max-width: 470px;
         background: #ebebeb;
         position: relative;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
         border-radius: 10px;
-        margin-left: 50px;
+        margin-left: 2.604vw;
 
         &:before {
             content: "";
             position: absolute;
             right: 100%;
-            top: 450px;
+            bottom: 50%;
             width: 0;
             height: 0;
             border-top: 12px solid transparent;
@@ -51,6 +56,35 @@
     }
 
     .text {
+        margin-bottom: 15px;
+        @include responsive-font(16, 8);
         color: #333;
+        user-select: none;
+    }
+    button:hover {
+        color: #BFAFF2;
+        opacity: 1;
+    }
+}
+
+
+@keyframes sale {
+    15% {
+        transform: rotate(5deg);
+    }
+    30% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+    65% {
+        transform: rotate(-3deg);
+    }
+    80% {
+        transform: rotate(2deg);
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }

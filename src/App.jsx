@@ -11,6 +11,10 @@ const  App = () => {
   const [lineWidth, setLineWidth] = useState({values: [3]})
   const [showHelper, setShowHelper] = useState(false)
 
+  if(showHelper){
+    document.body.style.overflow = 'hidden'        
+  } else document.body.style.overflow = 'auto'
+
   return (
     <main className='App'>
       <Panel 
